@@ -5,11 +5,8 @@
 .control {
   background-color: rgba(255, 255, 255, 0.8);
   border: 1px solid;
-  padding: 1rem;
   z-index: 2;
   position: absolute;
-  left: 1rem;
-  top: 1rem;
 }
 
 .row-button {
@@ -26,7 +23,6 @@
 }
 
 :root {
-  --row-count: 8;
   --white-key-width: calc(100% / 7);
   --black-key-width: calc(var(--white-key-width) * 50 / 70);
   --white-key-height: 100%;

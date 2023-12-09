@@ -7,6 +7,8 @@ const MIN_ROW_COUNT = 3;
 const DEFAULT_ROW_COUNT = 5;
 const CENTER_ROW_KEY = 4; // A4
 
+const KEYS = ["C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B"];
+
 function App() {
   const [rowCount, setRowCount] = useState(DEFAULT_ROW_COUNT);
 
@@ -35,21 +37,7 @@ function App() {
           const minRowNum = CENTER_ROW_KEY - Math.floor(rowCount / 2);
           const rowIndexFromBottom = rowCount - index - 1;
           const rowKey = minRowNum + rowIndexFromBottom;
-
-          const keys = [
-            "C",
-            "Db",
-            "D",
-            "Eb",
-            "E",
-            "F",
-            "Gb",
-            "G",
-            "Ab",
-            "A",
-            "Bb",
-            "B",
-          ].map((key) => `${key}${rowKey}`);
+          const keys = KEYS.map((key) => `${key}${rowKey}`);
 
           const onClick = (e: React.MouseEvent<HTMLLIElement>) => {
             const { key } = e.currentTarget.dataset;
@@ -67,7 +55,7 @@ function App() {
                   key={index}
                   data-key={key}
                 >
-                  {key}
+                  {key.includes("b") ? "" : key}
                 </li>
               ))}
             </ul>
