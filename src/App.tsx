@@ -1,12 +1,11 @@
 import "./App.css";
 
-import React, { useState } from "react";
-import NOTE_KEYS from "./noteKeys";
+import { useState } from "react";
 
-const MAX_ROW_COUNT = 8;
+const MAX_ROW_COUNT = 7;
+const MIN_ROW_COUNT = 3;
 const DEFAULT_ROW_COUNT = 5;
-
-const CENTER_ROW = 4;
+const CENTER_ROW_KEY = 4; // A4
 
 function App() {
   const [rowCount, setRowCount] = useState(DEFAULT_ROW_COUNT);
@@ -16,36 +15,61 @@ function App() {
       <div className="control">
         <button
           className="row-button"
-          onClick={() => setRowCount((prev) => prev - 1)}
+          onClick={() =>
+            setRowCount((prev) => Math.min(prev + 1, MAX_ROW_COUNT))
+          }
         >
           -
         </button>
         <button
           className="row-button"
-          onClick={() => setRowCount((prev) => prev + 1)}
+          onClick={() =>
+            setRowCount((prev) => Math.max(prev - 1, MIN_ROW_COUNT))
+          }
         >
           +
         </button>
       </div>
       <div className="rows">
         {new Array(rowCount).fill(null).map((_, index) => {
-          const minRowNum = CENTER_ROW - Math.floor(rowCount / 2);
+          const minRowNum = CENTER_ROW_KEY - Math.floor(rowCount / 2);
           const rowIndexFromBottom = rowCount - index - 1;
           const rowKey = minRowNum + rowIndexFromBottom;
+
+          const keys = [
+            "C",
+            "Db",
+            "D",
+            "Eb",
+            "E",
+            "F",
+            "Gb",
+            "G",
+            "Ab",
+            "A",
+            "Bb",
+            "B",
+          ].map((key) => `${key}${rowKey}`);
+
+          const onClick = (e: React.MouseEvent<HTMLLIElement>) => {
+            const { key } = e.currentTarget.dataset;
+            const audio = new Audio(`/sounds/${key}.mp3`);
+            audio.play();
+          };
+
           return (
             <ul className="piano-keys" key={index}>
-              <li className="key white" data-key="C">{`C${rowKey}`}</li>
-              <li className="key black" data-key="Db">{`Db${rowKey}`}</li>
-              <li className="key white" data-key="D">{`D${rowKey}`}</li>
-              <li className="key black" data-key="Db">{`Db${rowKey}`}</li>
-              <li className="key white" data-key="E">{`E${rowKey}`}</li>
-              <li className="key white" data-key="F">{`F${rowKey}`}</li>
-              <li className="key black" data-key="Gb">{`Gb${rowKey}`}</li>
-              <li className="key white" data-key="G">{`G${rowKey}`}</li>
-              <li className="key black" data-key="Ab">{`Ab${rowKey}`}</li>
-              <li className="key white" data-key="A">{`A${rowKey}`}</li>
-              <li className="key black" data-key="Bb">{`Bb${rowKey}`}</li>
-              <li className="key white" data-key="B">{`B${rowKey}`}</li>
+              {keys.map((key, index) => (
+                <li
+                  className={`key ${key.includes("b") ? "black" : "white"}`}
+                  role="button"
+                  onClick={onClick}
+                  key={index}
+                  data-key={key}
+                >
+                  {key}
+                </li>
+              ))}
             </ul>
           );
         })}
