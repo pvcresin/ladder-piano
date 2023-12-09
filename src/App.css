@@ -1,0 +1,67 @@
+.app {
+  height: 100dvh;
+}
+
+.control {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid;
+  padding: 1rem;
+  z-index: 2;
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+}
+
+.row-button {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  border: 1px solid;
+}
+
+.rows {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+:root {
+  --row-count: 8;
+  --white-key-width: calc(100% / 7);
+  --black-key-width: calc(var(--white-key-width) * 50 / 70);
+  --white-key-height: 100%;
+  --black-key-height: calc(var(--white-key-height) * 140 / 230);
+  --black-key-margin: calc(-1 * var(--black-key-width) / 2);
+}
+
+.piano-keys {
+  display: flex;
+  list-style: none;
+  flex-grow: 1;
+}
+
+.piano-keys .key {
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  display: grid;
+  align-items: flex-end;
+  justify-items: center;
+}
+
+.piano-keys .black {
+  z-index: 1;
+  width: var(--black-key-width);
+  height: var(--black-key-height);
+  margin: 0 var(--black-key-margin) 0 var(--black-key-margin);
+  background: black;
+  color: white;
+}
+
+.piano-keys .white {
+  height: var(--white-key-height);
+  width: var(--white-key-width);
+  border: 1px solid black;
+  background: white;
+  color: black;
+}
