@@ -1,0 +1,39 @@
+:root {
+  --white-key-width: calc(100% / 7);
+  --black-key-width: calc(var(--white-key-width) * 50 / 70);
+  --white-key-height: 100%;
+  --black-key-height: calc(var(--white-key-height) * 140 / 230);
+  --black-key-margin: calc(-1 * var(--black-key-width) / 2);
+}
+
+.row {
+  display: flex;
+  list-style: none;
+  flex-grow: 1;
+}
+
+.key {
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  display: grid;
+  align-items: flex-end;
+  justify-items: center;
+}
+
+.black {
+  z-index: 1;
+  width: var(--black-key-width);
+  height: var(--black-key-height);
+  margin: 0 var(--black-key-margin) 0 var(--black-key-margin);
+  background: black;
+  color: white;
+}
+
+.white {
+  height: var(--white-key-height);
+  width: var(--white-key-width);
+  border: 1px solid black;
+  background: white;
+  color: black;
+}
