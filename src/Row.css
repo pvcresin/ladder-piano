@@ -19,6 +19,7 @@
   display: grid;
   align-items: flex-end;
   justify-items: center;
+  border-radius: 0 0 6px 6px;
 }
 
 .black {
@@ -26,14 +27,22 @@
   width: var(--black-key-width);
   height: var(--black-key-height);
   margin: 0 var(--black-key-margin) 0 var(--black-key-margin);
-  background: black;
+  background-color: black;
   color: white;
+}
+
+.black:active {
+  background-color: #222;
 }
 
 .white {
   height: var(--white-key-height);
   width: var(--white-key-width);
-  border: 1px solid black;
-  background: white;
+  border: 1px solid #222;
+  background-color: white;
   color: black;
+}
+
+.white:active {
+  background-color: #eee;
 }
