@@ -8,9 +8,7 @@ const Ladder = ({ rowCount }: { rowCount: number }) => {
     <div className="ladder">
       {new Array(rowCount).fill(null).map((_, index) => {
         const minRowNum = CENTER_ROW_KEY - Math.floor(rowCount / 2);
-        const rowIndexFromBottom = rowCount - index - 1;
-        const rowNum = minRowNum + rowIndexFromBottom;
-
+        const rowNum = minRowNum + index;
         return <Row rowNum={rowNum} key={rowNum} />;
       })}
     </div>
