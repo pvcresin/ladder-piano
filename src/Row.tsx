@@ -8,7 +8,7 @@ const Row = ({ rowNum }: { rowNum: number }) => {
   const onClick = (e: React.MouseEvent<HTMLLIElement>) => {
     const key = e.currentTarget.dataset.key;
     if (key === undefined) return;
-    const audio = new Audio(`/sounds/${key}.mp3`);
+    const audio = new Audio(`./sounds/${key}.mp3`);
     audio.play();
   };
 
